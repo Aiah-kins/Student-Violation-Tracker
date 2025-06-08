@@ -6,7 +6,7 @@
   <title>SIVS Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link rel="icon" type="image/x-icon" href="img/nulogo.png"/>
-<link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
@@ -18,7 +18,6 @@
         <p>System Administrator</p>
       </div>
 
-      <!--NAVIGATOR-->
       <nav class="nav">
         <a href="homepage.html"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="active" onclick="showSection('dashboard', event)"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
@@ -33,7 +32,7 @@
     <main class="main-content">
       <div class="background-image"></div>
 
-  <!-- DASHBOARD Content -->
+      <!-- DASHBOARD Content -->
       <div id="dashboard" class="content-section active">
         <div class="info-cards">
           <div class="card gold"><i class="fas fa-user"></i><span>1</span><p>Total Student Enrolled</p></div>
@@ -57,7 +56,8 @@
           </div>
         </div>
       </div>
-  <!-- MANAGE STUDENT Content -->
+
+      <!-- MANAGE STUDENT Content -->
       <div id="manageStudent" class="content-section">
         <div class="manage-student-header">MANAGE STUDENT</div>
         <div class="manage-student-buttons">
@@ -88,7 +88,8 @@
           </tbody>
         </table>
       </div>
-        <!-- STUDENT VIOLATION Content -->
+
+      <!-- STUDENT VIOLATION Content -->
       <div id="studentViolation" class="content-section">
         <div class="violation-header">STUDENT VIOLATION RECORD</div>
         <div class="violation-buttons">
@@ -105,13 +106,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"></tr>
-            <tr><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"><td><input type="text" placeholder="Type here"></tr>
+            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
+            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
           </tbody>
         </table>
       </div>
-  <!-- MANAGE VIOLATION Content -->
-    <div id="manageViolation" class="content-section">
+
+      <!-- MANAGE VIOLATION Content -->
+      <div id="manageViolation" class="content-section">
         <div class="violation-header">MANAGE VIOLATION</div>
         <div class="violation-buttons">
           <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD VIOLATION</button>
@@ -148,161 +150,131 @@
       </div>
 
       <!-- MANAGE SECTION Content -->
-            <div id="manageSection" class="content-section">
-                <div class="manage-section-header">MANAGE SECTION</div>
-                <div class="manage-section-buttons">
-                    <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD SECTION</button>
-                    <button class="btn-red"><i class="fas fa-trash-alt"></i> DELETE SELECTED SECTION</button>
-                    <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
-                </div>
-                <div class="section-cards-grid">
-                    <!-- Section Card 1 -->
-                    <div class="section-card">
-                        <i class="fas fa-users"></i>
-                        <h2>BSIT-INF 235</h2>
-                        <!--NEED DAPAT EDITABLE TO-->
-                        <p>40 Currently Enrolled</p>
-                    </div>
-
-                    <!-- Section Card 2 -->
-                    <div class="section-card">
-                        <i class="fas fa-users"></i>
-                        <h2>BSIT-INF 234</h2>
-                          <!--NEED DAPAT EDITABLE TO-->
-                        <p>30 Currently Enrolled</p>
-                    </div>
-
-                    <!-- Section Card 3 -->
-                    <div class="section-card">
-                        <i class="fas fa-users"></i>
-                        <h2>BSIT-INF 233</h2>
-                          <!--NEED DAPAT EDITABLE TO-->
-                        <p>30 Currently Enrolled</p>
-                    </div>
-                </div>
-            </div>
-            
-        <div id="sectionDetails" class="content-section">
-            <div class="section-details-header">
-                MANAGE SECTION: <span id="section-id-display"></span>
-                <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
-            </div>
-            <div class="section-details-buttons">
-                <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD STUDENT</button>
-                <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT</button>
-            </div>
-            <table class="section-details-table">
-                <thead>
-                    <tr>
-                        <th>STUDENT ID</th>
-                        <th>STUDENT NAME (LAST NAME, FIRST NAME, INITIAL)</th>
-                        <th>REMARKS (ENROLLED OR REGISTERED)</th>
-                        <th><i class="fas fa-check-square"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="checkbox"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="text" placeholder="Type here"></td>
-                        <td><input type="checkbox"></td>
-                    </tr>
-                </tbody>
-            </table>
+      <div id="manageSection" class="content-section">
+        <div class="manage-section-header">MANAGE SECTION</div>
+        <div class="manage-section-buttons">
+          <!-- ✅ Updated here -->
+          <button class="btn-green" onclick="addNewSection(event)">
+            <i class="fas fa-plus-circle"></i> ADD SECTION
+          </button>
+          <button class="btn-red"><i class="fas fa-trash-alt"></i> DELETE SELECTED SECTION</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
         </div>
-    </main>
-  </div>
+        <div class="section-cards-grid">
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>40 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>30 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>30 Currently Enrolled</p></div>
+        </div>
+      </div>
+
+      <!-- SECTION DETAILS Content -->
+      <div id="sectionDetails" class="content-section">
+        <div class="section-details-header">
+          MANAGE SECTION: <span id="section-id-display"></span>
+          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
+        </div>
+        <div class="section-details-buttons">
+          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD STUDENT</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT</button>
+        </div>
+        <table class="section-details-table">
+          <thead>
+            <tr>
+              <th>STUDENT ID</th>
+              <th>STUDENT NAME (LAST NAME, FIRST NAME, INITIAL)</th>
+              <th>REMARKS (ENROLLED OR REGISTERED)</th>
+              <th><i class="fas fa-check-square"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
   </div>
 
-<!--JAVASCRIPT-->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const offenseCtx = document.getElementById('offenseChart');
-    new Chart(offenseCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Minor', 'Major', 'Others'],
-        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
-      }
-    });
+  <!-- Chart.js and Custom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const offenseCtx = document.getElementById('offenseChart');
+    new Chart(offenseCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Minor', 'Major', 'Others'],
+        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
+      }
+    });
 
-    const enrolledCtx = document.getElementById('enrolledChart');
-    new Chart(enrolledCtx, {
-      type: 'bar',
-      data: {
-        labels: ['CS', 'IT', 'BA'],
-        datasets: [
-          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
-          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
+    const enrolledCtx = document.getElementById('enrolledChart');
+    new Chart(enrolledCtx, {
+      type: 'bar',
+      data: {
+        labels: ['CS', 'IT', 'BA'],
+        datasets: [
+          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
+          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
 
-    const violationCtx = document.getElementById('violationChart');
-    new Chart(violationCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Dress Code', 'ID Policy', 'Others'],
-        datasets: [
-          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
-          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
+    const violationCtx = document.getElementById('violationChart');
+    new Chart(violationCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Dress Code', 'ID Policy', 'Others'],
+        datasets: [
+          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
+          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
 
-  // Modified function to show/hide sections and update section ID display
-   function showSection(id, event, sectionId = null) {
-        // Hide all content sections first
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.remove('active');
-        });
+    function showSection(id, event, sectionId = null) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
 
-        // Show the target content section
-        const targetSection = document.getElementById(id);
-        if (targetSection) {
-            targetSection.classList.add('active');
-        } else {
-            console.error(`Section with ID '${id}' not found.`);
-        }
-        
-        // Remove 'active' from all navigation links
-        document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
-        // Add 'active' to the clicked navigation link
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
-        }
+      const targetSection = document.getElementById(id);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
 
-        // Update section ID display if applicable
-        if (id === 'sectionDetails' && sectionId) {
-            const sectionIdDisplay = document.getElementById('section-id-display');
-            if (sectionIdDisplay) {
-                sectionIdDisplay.textContent = sectionId;
-            } else {
-                console.warn("Element with ID 'section-id-display' not found.");
-            }
-        }
-    }
+      document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
 
-    // Function to handle adding a new section and displaying section details
-    function addNewSection(event) {
-        event.preventDefault(); // Prevent default button behavior
-        const newSectionId = "New Section " + Math.floor(Math.random() * 1000); // Generate a unique ID for the new section
-        showSection('sectionDetails', event, newSectionId);
+      if (id === 'sectionDetails' && sectionId) {
+        const sectionIdDisplay = document.getElementById('section-id-display');
+        if (sectionIdDisplay) {
+          sectionIdDisplay.textContent = sectionId;
+        }
+      }
     }
 
-    // Ensure dashboard is active on initial load
-    document.addEventListener('DOMContentLoaded', () => {
-        showSection('dashboard', null);
-    });
-  </script>
+    function addNewSection(event) {
+      event.preventDefault();
+      const newSectionId = "New Section " + Math.floor(Math.random() * 1000);
+      showSection('sectionDetails', event, newSectionId);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('dashboard', null);
+    });
+  </script>
 </body>
 </html>
