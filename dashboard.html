@@ -222,85 +222,87 @@
   </div>
 
 <!--JAVASCRIPT-->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const offenseCtx = document.getElementById('offenseChart');
-    new Chart(offenseCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Minor', 'Major', 'Others'],
-        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
-      }
-    });
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const offenseCtx = document.getElementById('offenseChart');
+    new Chart(offenseCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Minor', 'Major', 'Others'],
+        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
+      }
+    });
 
-    const enrolledCtx = document.getElementById('enrolledChart');
-    new Chart(enrolledCtx, {
-      type: 'bar',
-      data: {
-        labels: ['CS', 'IT', 'BA'],
-        datasets: [
-          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
-          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
+    const enrolledCtx = document.getElementById('enrolledChart');
+    new Chart(enrolledCtx, {
+      type: 'bar',
+      data: {
+        labels: ['CS', 'IT', 'BA'],
+        datasets: [
+          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
+          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
 
-    const violationCtx = document.getElementById('violationChart');
-    new Chart(violationCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Dress Code', 'ID Policy', 'Others'],
-        datasets: [
-          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
-          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
+    const violationCtx = document.getElementById('violationChart');
+    new Chart(violationCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Dress Code', 'ID Policy', 'Others'],
+        datasets: [
+          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
+          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
 
-  // Modified function to show/hide sections and update section ID display
+  // Modified function to show/hide sections and update section ID display
    function showSection(id, event, sectionId = null) {
-        console.log(`Attempting to show section: ${id}`);
-        // Hide all content sections first
-        document.querySelectorAll('.content-section').forEach(section => {
-            section.classList.remove('active');
-            console.log(`Removed 'active' from: ${section.id}`);
-        });
+        // Hide all content sections first
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.remove('active');
+        });
 
-        // Show the target content section
-        const targetSection = document.getElementById(id);
-        if (targetSection) {
-            targetSection.classList.add('active');
-            console.log(`Added 'active' to: ${id}`);
-        } else {
-            console.error(`Section with ID '${id}' not found.`);
-        }
-        
-        // Remove 'active' from all navigation links
-        document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
-        // Add 'active' to the clicked navigation link
-        if (event && event.currentTarget) {
-            event.currentTarget.classList.add('active');
-            console.log(`Added 'active' to nav link: ${event.currentTarget.textContent.trim()}`);
-        }
+        // Show the target content section
+        const targetSection = document.getElementById(id);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        } else {
+            console.error(`Section with ID '${id}' not found.`);
+        }
+        
+        // Remove 'active' from all navigation links
+        document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+        // Add 'active' to the clicked navigation link
+        if (event && event.currentTarget) {
+            event.currentTarget.classList.add('active');
+        }
 
-        // Update section ID display if applicable
-        if (id === 'sectionDetails' && sectionId) {
-            const sectionIdDisplay = document.getElementById('section-id-display');
-            if (sectionIdDisplay) {
-                sectionIdDisplay.textContent = sectionId;
-                console.log(`Updated section ID display to: ${sectionId}`);
-            } else {
-                console.warn("Element with ID 'section-id-display' not found.");
-            }
-        }
+        // Update section ID display if applicable
+        if (id === 'sectionDetails' && sectionId) {
+            const sectionIdDisplay = document.getElementById('section-id-display');
+            if (sectionIdDisplay) {
+                sectionIdDisplay.textContent = sectionId;
+            } else {
+                console.warn("Element with ID 'section-id-display' not found.");
+            }
+        }
+    }
+
+    // Function to handle adding a new section and displaying section details
+    function addNewSection(event) {
+        event.preventDefault(); // Prevent default button behavior
+        const newSectionId = "New Section " + Math.floor(Math.random() * 1000); // Generate a unique ID for the new section
+        showSection('sectionDetails', event, newSectionId);
     }
 
-    // Ensure dashboard is active on initial load
-    document.addEventListener('DOMContentLoaded', () => {
-        showSection('dashboard', null);
-    });
+    // Ensure dashboard is active on initial load
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('dashboard', null);
+    });
   </script>
 </body>
 </html>
