@@ -1,0 +1,280 @@
+/* Reset and Base Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
+
+.container { display: flex; height: 100vh; }
+
+.sidebar {
+  background: #083C84;
+  color: white;
+  width: 250px;
+  padding: 20px;
+}
+
+.profile {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.nav a {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+  background-color: #f1c40f;
+  color: black;
+}
+
+.nav a i { width: 25px; }
+
+.main-content {
+  flex-grow: 1;
+  position: relative;
+  overflow-y: auto;
+}
+
+.background-image {
+  background: url('img/nubg.jpeg') no-repeat center center/cover;
+  filter: brightness(0.7);
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+
+/* Section Display */
+.content-section {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  display: none;
+}
+.content-section.active {
+  display: block;
+}
+
+/* Info Cards */
+.info-cards {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px;
+}
+
+.card {
+  width: 200px;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.card i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.card.gold { background-color: #f1c40f; color: #000; }
+.card.red { background-color: #ef4c29; }
+.card.blue { background-color: #2471a3; }
+
+/* Chart Grid */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+.chart-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+.chart-card h3 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Section Headers */
+.manage-student-header,
+.violation-header,
+.manage-section-header,
+.section-details-header {
+  background: #C4A000;
+  padding: 10px 20px;
+  color: #083C84;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 0.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.section-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-details-header span {
+  font-size: 24px;
+  color: #083C84;
+}
+
+/* Button Containers */
+.manage-student-buttons,
+.violation-buttons,
+.manage-section-buttons,
+.section-details-buttons {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.manage-student-buttons button,
+.violation-buttons button,
+.manage-section-buttons button,
+.section-details-buttons button {
+  padding: 10px 15px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, background-color 0.2s;
+}
+
+.manage-student-buttons button:hover,
+.violation-buttons button:hover,
+.manage-section-buttons button:hover,
+.section-details-buttons button:hover {
+  transform: translateY(-3px);
+  opacity: 0.9;
+}
+
+/* Button Colors */
+.btn-green { background-color: #28a745; }
+.btn-red { background-color: #dc3545; }
+.btn-blue { background-color: #17a2b8; }
+
+/* Table Styles */
+.student-table,
+.violation-table,
+.section-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.student-table th, .student-table td,
+.violation-table th, .violation-table td,
+.section-details-table th, .section-details-table td {
+  border: 2px solid black;
+  padding: 12px;
+  text-align: center;
+}
+
+.student-table th,
+.violation-table th,
+.section-details-table th {
+  background-color: #083C84;
+  color: white;
+}
+
+.student-table input,
+.violation-table input,
+.section-details-table input {
+  width: 90%;
+  padding: 5px;
+  text-align: center;
+  border: none;
+}
+
+/* Section Cards Grid */
+.section-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 20px;
+}
+
+.section-card {
+  background-color: #2471a3;
+  color: #ffffff;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.section-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+.section-card i {
+  font-size: 64px;
+  margin-bottom: 16px;
+  color: #f1c40f;
+}
+
+.section-card h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.section-card p {
+  font-size: 1.125rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .manage-section-buttons,
+  .section-details-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .manage-section-buttons button,
+  .section-details-buttons button {
+    width: 90%;
+  }
+
+  .manage-section-header,
+  .section-details-header {
+    font-size: 20px;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .section-details-header span {
+    font-size: 20px;
+    margin-top: 5px;
+  }
+}

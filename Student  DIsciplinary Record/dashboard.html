@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SIVS Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="icon" type="image/x-icon" href="img/nulogo.png"/>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile">
+        <i class="fas fa-user-circle fa-3x"></i>
+        <h2>SIVS</h2>
+        <p>System Administrator</p>
+      </div>
+
+      <nav class="nav">
+        <a href="homepage.html"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="active" onclick="showSection('dashboard', event)"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
+        <a href="#" onclick="showSection('manageStudent', event)"><i class="fas fa-user-graduate"></i> Manage Student</a>
+        <a href="#" onclick="showSection('studentViolation', event)"><i class="fas fa-exclamation-circle"></i> Student Violation</a>
+        <a href="#" onclick="showSection('manageViolation', event)"><i class="fas fa-tools"></i> Manage Violation</a>
+        <a href="#" onclick="showSection('manageSection', event)"><i class="fas fa-tools"></i> Manage Section</a>
+        <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="background-image"></div>
+
+      <!-- DASHBOARD Content -->
+      <div id="dashboard" class="content-section active">
+        <div class="info-cards">
+          <div class="card gold"><i class="fas fa-user"></i><span>1</span><p>Total Student Enrolled</p></div>
+          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>2</span><p>Total Student Violation</p></div>
+          <div class="card red"><i class="fas fa-check-circle"></i><span>3</span><p>Total Violation</p></div>
+          <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Total Minor and Major Offense</h3>
+            <canvas id="offenseChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Enrolled Students per Department</h3>
+            <canvas id="enrolledChart"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Total of Violations per Category</h3>
+            <canvas id="violationChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- MANAGE STUDENT Content -->
+      <div id="manageStudent" class="content-section">
+        <div class="manage-student-header">MANAGE STUDENT</div>
+        <div class="manage-student-buttons">
+          <button class="btn-green"><i class="fas fa-sync-alt"></i> Update Student Info</button>
+          <button class="btn-red"><i class="fas fa-trash"></i> Delete Student</button>
+          <button class="btn-blue"><i class="fas fa-user-plus"></i> Add Student</button>
+        </div>
+        <table class="student-table">
+          <thead>
+            <tr>
+              <th>STUDENT NAME (LAST, FIRST, M.I)</th>
+              <th>STUDENT ID</th>
+              <th>COURSE-SECTION</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td>
+                <select style="width: 100%; text-align: center;">
+                  <option>Select Section</option>
+                  <option>BSIT-1A</option>
+                  <option>BSCS-2B</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- STUDENT VIOLATION Content -->
+      <div id="studentViolation" class="content-section">
+        <div class="violation-header">STUDENT VIOLATION RECORD</div>
+        <div class="violation-buttons">
+          <button class="btn-red"><i class="fas fa-trash"></i> DELETE STUDENT ID</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
+        </div>
+        <table class="violation-table">
+          <thead>
+            <tr>
+              <th>STUDENT NAME (LAST, FIRST, M.I)<br>Stud ID no.</th>
+              <th>VIOLATION</th>
+              <th>VIOLATION REMARK</th>
+              <th>DATE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
+            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MANAGE VIOLATION Content -->
+      <div id="manageViolation" class="content-section">
+        <div class="violation-header">MANAGE VIOLATION</div>
+        <div class="violation-buttons">
+          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD VIOLATION</button>
+          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
+        </div>
+        <table class="violation-table">
+          <thead>
+            <tr>
+              <th>STUDENT NAME (LAST, FIRST, M.I)<br>STUD ID NO.</th>
+              <th>VIOLATION</th>
+              <th>VIOLATION REMARK</th>
+              <th>DATE</th>
+              <th><i class="fas fa-check-square"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="date"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="date"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- MANAGE SECTION Content -->
+      <div id="manageSection" class="content-section">
+        <div class="manage-section-header">MANAGE SECTION</div>
+        <div class="manage-section-buttons">
+          <!-- ✅ Updated here -->
+          <button class="btn-green" onclick="addNewSection(event)">
+            <i class="fas fa-plus-circle"></i> ADD SECTION
+          </button>
+          <button class="btn-red"><i class="fas fa-trash-alt"></i> DELETE SELECTED SECTION</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
+        </div>
+        <div class="section-cards-grid">
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>40 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>30 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>30 Currently Enrolled</p></div>
+        </div>
+      </div>
+
+      <!-- SECTION DETAILS Content -->
+      <div id="sectionDetails" class="content-section">
+        <div class="section-details-header">
+          MANAGE SECTION: <span id="section-id-display"></span>
+          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
+        </div>
+        <div class="section-details-buttons">
+          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD STUDENT</button>
+          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT</button>
+        </div>
+        <table class="section-details-table">
+          <thead>
+            <tr>
+              <th>STUDENT ID</th>
+              <th>STUDENT NAME (LAST NAME, FIRST NAME, INITIAL)</th>
+              <th>REMARKS (ENROLLED OR REGISTERED)</th>
+              <th><i class="fas fa-check-square"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="text" placeholder="Type here"></td>
+              <td><input type="checkbox"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- Chart.js and Custom JS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const offenseCtx = document.getElementById('offenseChart');
+    new Chart(offenseCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Minor', 'Major', 'Others'],
+        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
+      }
+    });
+
+    const enrolledCtx = document.getElementById('enrolledChart');
+    new Chart(enrolledCtx, {
+      type: 'bar',
+      data: {
+        labels: ['CS', 'IT', 'BA'],
+        datasets: [
+          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
+          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
+
+    const violationCtx = document.getElementById('violationChart');
+    new Chart(violationCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Dress Code', 'ID Policy', 'Others'],
+        datasets: [
+          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
+          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
+        ]
+      },
+      options: { responsive: true }
+    });
+
+    function showSection(id, event, sectionId = null) {
+      document.querySelectorAll('.content-section').forEach(section => {
+        section.classList.remove('active');
+      });
+
+      const targetSection = document.getElementById(id);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+
+      document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+
+      if (id === 'sectionDetails' && sectionId) {
+        const sectionIdDisplay = document.getElementById('section-id-display');
+        if (sectionIdDisplay) {
+          sectionIdDisplay.textContent = sectionId;
+        }
+      }
+    }
+
+    function addNewSection(event) {
+      event.preventDefault();
+      const newSectionId = "New Section " + Math.floor(Math.random() * 1000);
+      showSection('sectionDetails', event, newSectionId);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showSection('dashboard', null);
+    });
+  </script>
+</body>
+</html>
