@@ -31,7 +31,9 @@
   </header>
 
   <section id="login" class="login-container">
-    <form action="dashboard.html" method="post">
+    <form id="loginForm" action="homepage.html" method="post">
+
+
       <div class="form-group">
         <label for="AdminLogin">Admin Login</label>
         <input type="text" id="AdminLogin" name="Admin" placeholder="Enter your Admin ID" required />
@@ -47,6 +49,28 @@
       Student Affairs & Discipline Office
     </div>
   </section>
+
+  <div class="splash-screen" id="splashScreen">
+  <img src="nulogo.png" alt="NU Logo" />
+  <h2>Redirecting...</h2>
+</div>
+
+<script src="SplashScreen.js"></script>
+<script>
+  document.querySelector("#loginForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log("Splash activated");
+
+    const splash = document.getElementById("splashScreen");
+    splash.classList.add("show");
+
+    setTimeout(() => {
+      this.submit();
+    }, 2000);
+  });
+</script>
+
+
 
 </body>
 </html>
