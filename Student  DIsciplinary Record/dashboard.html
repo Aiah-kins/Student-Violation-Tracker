@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SIVS Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="icon" type="image/x-icon" href="img/nulogo.png"/>
+  <link rel="icon" type="x-icon" href="nulogo.png"/>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 
@@ -35,9 +35,9 @@
       <!-- DASHBOARD Content -->
       <div id="dashboard" class="content-section active">
         <div class="info-cards">
-          <div class="card gold"><i class="fas fa-user"></i><span>1</span><p>Total Student Enrolled</p></div>
-          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>2</span><p>Total Student Violation</p></div>
-          <div class="card red"><i class="fas fa-check-circle"></i><span>3</span><p>Total Violation</p></div>
+          <div class="card gold"><i class="fas fa-user"></i><span>0</span><p>Total Student Enrolled</p></div>
+          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>0</span><p>Total Student Violation</p></div>
+          <div class="card red"><i class="fas fa-check-circle"></i><span>0</span><p>Total Violation</p></div>
           <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
         </div>
 
@@ -58,39 +58,49 @@
       </div>
 
       <!-- MANAGE STUDENT Content -->
-      <div id="manageStudent" class="content-section">
-        <div class="manage-student-header">MANAGE STUDENT</div>
-        <div class="manage-student-buttons">
-          <button class="btn-green"><i class="fas fa-sync-alt"></i> Update Student Info</button>
-          <button class="btn-red"><i class="fas fa-trash"></i> Delete Student</button>
-          <button class="btn-blue"><i class="fas fa-user-plus"></i> Add Student</button>
-        </div>
-        <table class="student-table">
-          <thead>
-            <tr>
-              <th>STUDENT NAME (LAST, FIRST, M.I)</th>
-              <th>STUDENT ID</th>
-              <th>COURSE-SECTION</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td>
-                <select style="width: 100%; text-align: center;">
-                  <option>Select Section</option>
-                  <option>BSIT-1A</option>
-                  <option>BSCS-2B</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<div id="manageStudent" class="content-section">
+  <div class="manage-student-header">MANAGE STUDENT</div>
+
+  <!-- Action Buttons (used for selected rows) -->
+  <div class="manage-student-buttons">
+    <button class="btn-green" onclick="updateStudent()"><i class="fas fa-sync-alt"></i> Update Student Info</button>
+    <button class="btn-red" onclick="deleteSelectedStudent()"><i class="fas fa-trash"></i> Delete Student</button>
+    <button class="btn-blue" onclick="toggleForm()"><i class="fas fa-user-plus"></i> Add Student</button>
+  </div>
+
+  <!-- Student Table -->
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>STUDENT NAME (LAST, FIRST, M.I)</th>
+        <th>STUDENT ID</th>
+        <th>COURSE-SECTION</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody">
+      <!-- Rows added dynamically -->
+    </tbody>
+  </table>
+
+  <!-- Add Student Form -->
+  <div id="studentForm" style="display: none; margin-top: 20px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <input id="nameInput" type="text" placeholder="Student Name (Last, First, M.I)" style="flex: 1; padding: 10px;" />
+      <input id="idInput" type="text" placeholder="Student ID" style="flex: 1; padding: 10px;" />
+      <select id="sectionInput" style="flex: 1; padding: 10px;">
+        <option>Select Section</option>
+        <option>BSIT-INF235</option>
+        <option>BSIT-INF234</option>
+        <option>BSIT-ING233</option>
+      </select>
+      <button onclick="addStudent()" class="btn-green" style="padding: 10px 20px;"><i class="fas fa-plus-circle"></i> Save Student</button>
+    </div>
+  </div>
+</div>
 
       <!-- STUDENT VIOLATION Content -->
-      <div id="studentViolation" class="content-section">
+        <div id="studentViolation" class="content-section">
         <div class="violation-header">STUDENT VIOLATION RECORD</div>
         <div class="violation-buttons">
           <button class="btn-red"><i class="fas fa-trash"></i> DELETE STUDENT ID</button>
@@ -100,54 +110,42 @@
           <thead>
             <tr>
               <th>STUDENT NAME (LAST, FIRST, M.I)<br>Stud ID no.</th>
+              <th>Section</th>
               <th>VIOLATION</th>
               <th>VIOLATION REMARK</th>
               <th>DATE</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
-            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
-          </tbody>
         </table>
       </div>
-
+    
       <!-- MANAGE VIOLATION Content -->
-      <div id="manageViolation" class="content-section">
-        <div class="violation-header">MANAGE VIOLATION</div>
-        <div class="violation-buttons">
-          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD VIOLATION</button>
-          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
-          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
-        </div>
-        <table class="violation-table">
-          <thead>
-            <tr>
-              <th>STUDENT NAME (LAST, FIRST, M.I)<br>STUD ID NO.</th>
-              <th>VIOLATION</th>
-              <th>VIOLATION REMARK</th>
-              <th>DATE</th>
-              <th><i class="fas fa-check-square"></i></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="date"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="date"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+        <div id="manageViolation" class="content-section">
+  <div class="violation-header">STUDENT VIOLATION RECORD</div>
+  <div class="violation-buttons">
+    <!-- SEARCH FIELD AND BUTTON -->
+    <input type="text" id="searchInput" placeholder="Enter Student ID" style="padding: 5px; margin-right: 10px;" />
+    <button class="btn-blue" onclick="searchStudent()">
+      <i class="fas fa-search"></i> SEARCH STUDENT ID
+    </button>
+  </div>
+
+  <table class="violation-table">
+    <thead>
+      <tr>
+        <th>STUDENT NAME (LAST, FIRST, M.I)<br>Stud ID no.</th>
+        <th>Section</th>
+        <th>VIOLATION</th>
+        <th>Violation Remarks</th>
+        <th>DATE</th>
+      </tr>
+    </thead>
+    <tbody id="violationTableBody">
+      <!-- Search results will appear here -->
+    </tbody>
+  </table>
+</div>
+
 
       <!-- MANAGE SECTION Content -->
       <div id="manageSection" class="content-section">
@@ -161,9 +159,9 @@
           <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
         </div>
         <div class="section-cards-grid">
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>40 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>30 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>30 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>0 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>0 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>0 Currently Enrolled</p></div>
         </div>
       </div>
 
@@ -186,20 +184,6 @@
               <th><i class="fas fa-check-square"></i></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-          </tbody>
         </table>
       </div>
     </main>
@@ -207,74 +191,196 @@
 
   <!-- Chart.js and Custom JS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
-    const offenseCtx = document.getElementById('offenseChart');
-    new Chart(offenseCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Minor', 'Major', 'Others'],
-        datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
-      }
+<script>
+  const offenseCtx = document.getElementById('offenseChart');
+  new Chart(offenseCtx, {
+    type: 'pie',
+    data: {
+      labels: ['Minor', 'Major', 'Others'],
+      datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
+    }
+  });
+
+  const enrolledCtx = document.getElementById('enrolledChart');
+  new Chart(enrolledCtx, {
+    type: 'bar',
+    data: {
+      labels: ['CS', 'IT', 'BA'],
+      datasets: [
+        { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
+        { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
+      ]
+    },
+    options: { responsive: true }
+  });
+
+  const violationCtx = document.getElementById('violationChart');
+  new Chart(violationCtx, {
+    type: 'bar',
+    data: {
+      labels: ['Dress Code', 'ID Policy', 'Others'],
+      datasets: [
+        { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
+        { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
+      ]
+    },
+    options: { responsive: true }
+  });
+
+  function showSection(id, event, sectionId = null) {
+    document.querySelectorAll('.content-section').forEach(section => {
+      section.classList.remove('active');
     });
 
-    const enrolledCtx = document.getElementById('enrolledChart');
-    new Chart(enrolledCtx, {
-      type: 'bar',
-      data: {
-        labels: ['CS', 'IT', 'BA'],
-        datasets: [
-          { label: 'Male', data: [3, 14, 16], backgroundColor: '#76e1fa' },
-          { label: 'Female', data: [6, 18, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
-
-    const violationCtx = document.getElementById('violationChart');
-    new Chart(violationCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Dress Code', 'ID Policy', 'Others'],
-        datasets: [
-          { label: '1st Semester', data: [5, 13, 18], backgroundColor: '#76e1fa' },
-          { label: '2nd Semester', data: [7, 15, 20], backgroundColor: '#1e90ff' }
-        ]
-      },
-      options: { responsive: true }
-    });
-
-    function showSection(id, event, sectionId = null) {
-      document.querySelectorAll('.content-section').forEach(section => {
-        section.classList.remove('active');
-      });
-
-      const targetSection = document.getElementById(id);
-      if (targetSection) {
-        targetSection.classList.add('active');
-      }
-
-      document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
-      if (event && event.currentTarget) {
-        event.currentTarget.classList.add('active');
-      }
-
-      if (id === 'sectionDetails' && sectionId) {
-        const sectionIdDisplay = document.getElementById('section-id-display');
-        if (sectionIdDisplay) {
-          sectionIdDisplay.textContent = sectionId;
-        }
-      }
+    const targetSection = document.getElementById(id);
+    if (targetSection) {
+      targetSection.classList.add('active');
     }
 
-    function addNewSection(event) {
-      event.preventDefault();
-      const newSectionId = "New Section " + Math.floor(Math.random() * 1000);
-      showSection('sectionDetails', event, newSectionId);
+    document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
+    if (event && event.currentTarget) {
+      event.currentTarget.classList.add('active');
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      showSection('dashboard', null);
+    if (id === 'sectionDetails' && sectionId) {
+      const sectionIdDisplay = document.getElementById('section-id-display');
+      if (sectionIdDisplay) {
+        sectionIdDisplay.textContent = sectionId;
+      }
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    loadStudents(); // Load students from localStorage on page load
+  });
+
+  function toggleForm() {
+    const form = document.getElementById("studentForm");
+    form.style.display = form.style.display === "none" ? "block" : "none";
+  }
+
+  function addStudent() {
+    const name = document.getElementById("nameInput").value.trim();
+    const id = document.getElementById("idInput").value.trim();
+    const section = document.getElementById("sectionInput").value;
+
+    if (name === "" || id === "" || section === "Select Section") {
+      alert("Please complete all fields.");
+      return;
+    }
+
+    const student = { name, id, section };
+    const students = getStudents();
+    students.push(student);
+    saveStudents(students);
+    renderStudents();
+
+    // Clear form
+    document.getElementById("nameInput").value = "";
+    document.getElementById("idInput").value = "";
+    document.getElementById("sectionInput").value = "Select Section";
+  }
+ // Manage Student
+  function deleteSelectedStudent() {
+    const selected = document.querySelector('input[name="selectStudent"]:checked');
+    if (!selected) {
+      alert("Please select a student to delete.");
+      return;
+    }
+
+    const rowIndex = selected.closest('tr').rowIndex - 1; // subtract header row
+    const students = getStudents();
+    students.splice(rowIndex, 1);
+    saveStudents(students);
+    renderStudents();
+  }
+
+  function updateStudent() {
+    const selected = document.querySelector('input[name="selectStudent"]:checked');
+    if (!selected) {
+      alert("Please select a student to update.");
+      return;
+    }
+
+    const row = selected.closest('tr');
+    const rowIndex = row.rowIndex - 1;
+
+    const students = getStudents();
+    const student = students[rowIndex];
+
+    // Prefill form
+    document.getElementById("nameInput").value = student.name;
+    document.getElementById("idInput").value = student.id;
+    document.getElementById("sectionInput").value = student.section;
+
+    // Remove the student temporarily to be replaced after re-save
+    students.splice(rowIndex, 1);
+    saveStudents(students);
+    renderStudents();
+
+    document.getElementById("studentForm").style.display = "block";
+  }
+
+  function getStudents() {
+    return JSON.parse(localStorage.getItem("students") || "[]");
+  }
+
+  function saveStudents(students) {
+    localStorage.setItem("students", JSON.stringify(students));
+  }
+
+  function renderStudents() {
+    const students = getStudents();
+    const tableBody = document.getElementById("studentTableBody");
+    tableBody.innerHTML = "";
+
+    students.forEach(student => {
+      const newRow = document.createElement("tr");
+      newRow.innerHTML = `
+        <td><input type="radio" name="selectStudent" /></td>
+        <td>${student.name}</td>
+        <td>${student.id}</td>
+        <td>${student.section}</td>
+      `;
+      tableBody.appendChild(newRow);
     });
-  </script>
+  }
+
+  function loadStudents() {
+    renderStudents();
+  }
+// Manage Violation
+  function searchStudent() {
+    const searchId = document.getElementById("searchInput").value.trim();
+    const students = JSON.parse(localStorage.getItem("students") || "[]");
+    const found = students.find(student => student.id === searchId);
+
+    const tableBody = document.getElementById("violationTableBody");
+    tableBody.innerHTML = ""; // Clear previous results
+
+    if (found) {
+      const today = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td><strong>${found.name}</strong><br><small>${found.id}</small></td>
+        <td>${found.section || "N/A"}</td>
+        <td><input type="text" placeholder="Enter violation..." style="padding:5px;" /></td>
+        <td>
+          <select style="padding:5px;">
+            <option value="">Choose Remarks</option>
+            <option value="Major">Major</option>
+            <option value="Minor">Minor</option>
+          </select>
+        </td>
+        <td><input type="date" value="${today}" style="padding:5px;" /></td>
+      `;
+      tableBody.appendChild(row);
+    } else {
+      alert("Student ID not found.");
+    }
+  }
+
+</script>
+
 </body>
 </html>

@@ -1,5 +1,4 @@
-
-    * {
+*{
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -7,7 +6,7 @@
     }
 
     body {
-      background: url('img/nubg.jpeg') no-repeat center center fixed;
+      background: url('nubg.jpeg') no-repeat center center fixed;
       background-size: cover;
       color: white;
       min-height: 100vh;
@@ -41,6 +40,20 @@
       margin-left: 5px;
     }
 
+    .header-right .logout-button {
+      background-color: #c62828;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .logout-button:hover {
+      background-color: #b71c1c;
+    }
+
     .navbar {
       background: #f7c600;
       color: #003a70;
@@ -52,33 +65,19 @@
       justify-content: space-between;
     }
 
-    .menu-icons {
-      font-size: 22px;
-      margin-left: 10px;
-      cursor: pointer;
+    .grid-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 80px 20px;
     }
 
-    .search-box {
-      position: absolute;
-      top: 140px;
-      right: 40px;
-    }
-
-    .search-box input {
-      padding: 10px;
-      border-radius: 20px;
-      border: none;
-      width: 250px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 50px;
-      padding: 80px 40px;
-      max-width: 1200px;
-      margin: auto;
-      justify-items: center;
+    .grid-row {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 40px;
     }
 
     .card {
@@ -87,7 +86,9 @@
       border-radius: 25px;
       text-align: center;
       transition: 0.3s;
-      width: 300px;
+      width: 280px;
+      color: white;
+      text-decoration: none;
     }
 
     .card:hover {

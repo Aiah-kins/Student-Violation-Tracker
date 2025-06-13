@@ -42,7 +42,7 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
 }
 
 .background-image {
-  background: url('img/nubg.jpeg') no-repeat center center/cover;
+  background: url('nubg.jpeg') no-repeat center center/cover;
   filter: brightness(0.7);
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -139,7 +139,7 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: right;
 }
 
 .manage-student-buttons button,
