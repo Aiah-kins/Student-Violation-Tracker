@@ -1,8 +1,30 @@
 /* Reset and Base Styles */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
+* { 
+  margin: 0; 
+  padding: 0; 
+  box-sizing: border-box; 
+}
 
-.container { display: flex; height: 100vh; }
+body, html { 
+  height: 100%; 
+  font-family: 'Segoe UI', sans-serif; 
+}
+
+.container { 
+  display: flex; 
+  height: 100vh; 
+}
+
+.logo { 
+
+  height: auto;
+  width: 40px;
+
+}
+
+.sidebar.collapsed {
+  width: 20px;
+}
 
 .sidebar {
   background: #083C84;
@@ -10,6 +32,7 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
   width: 250px;
   padding: 20px;
 }
+
 
 .profile {
   text-align: center;
@@ -42,7 +65,7 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
 }
 
 .background-image {
-  background: url('img/nubg.jpeg') no-repeat center center/cover;
+  background: url('nubg.jpeg') no-repeat center center/cover;
   filter: brightness(0.7);
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -252,6 +275,118 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
   font-size: 1.125rem;
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none; /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: blue;
+  padding: 20px 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: white; /* makes all text inside white */
+}
+
+.modal h3 {
+  margin-bottom: 10px;
+  color: white; /* explicitly white */
+}
+
+.modal p {
+  margin-bottom: 20px;
+  color: white; /* explicitly white */
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Confirm Button */
+.btn-confirm {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: linear-gradient(135deg, #d32f2f, #b71c1c);
+  transform: scale(1.05);
+}
+
+/* Cancel Button */
+.btn-cancel {
+  background: linear-gradient(135deg, #90caf9, #42a5f5);
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  transform: scale(1.05);
+}
+.modal-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0232c4;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.splash-screen.show {
+  display: flex;
+  opacity: 1;
+}
+
+.splash-screen img {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.splash-screen h2 {
+  font-size: 1.5rem;
+  color: #003366;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
   .manage-section-buttons,
@@ -277,4 +412,70 @@ body, html { height: 100%; font-family: 'Segoe UI', sans-serif; }
     font-size: 20px;
     margin-top: 5px;
   }
+
+  .toggle-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2000;
+  background-color: #083C84;
+  color: white;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  display: none;
+}
+
+/* Show button on small screens */
+@media (max-width: 768px) {
+  .toggle-btn {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    z-index: 1500;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-100%);
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+.splash-screen {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.splash-screen img {
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.splash-screen h2 {
+  font-size: 24px;
+  color: #333;
+}
+    
+
 }

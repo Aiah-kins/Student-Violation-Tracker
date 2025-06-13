@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SIVS Dashboard</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <link rel="icon" type="image/x-icon" href="img/nulogo.png"/>
+  <link rel="icon" type="x-icon" href="nulogo.png"/>
   <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
   <div class="container">
-    <aside class="sidebar">
+     <aside class="sidebar" id="sidebar">
       <div class="profile">
-        <i class="fas fa-user-circle fa-3x"></i>
+<img src="nulogo.png" class="logo">
+
         <h2>SIVS</h2>
         <p>System Administrator</p>
       </div>
@@ -25,8 +26,9 @@
         <a href="#" onclick="showSection('studentViolation', event)"><i class="fas fa-exclamation-circle"></i> Student Violation</a>
         <a href="#" onclick="showSection('manageViolation', event)"><i class="fas fa-tools"></i> Manage Violation</a>
         <a href="#" onclick="showSection('manageSection', event)"><i class="fas fa-tools"></i> Manage Section</a>
-        <a href="#" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <a href="#" id="logoutBtn" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </nav>
+       
     </aside>
 
     <main class="main-content">
@@ -35,9 +37,9 @@
       <!-- DASHBOARD Content -->
       <div id="dashboard" class="content-section active">
         <div class="info-cards">
-          <div class="card gold"><i class="fas fa-user"></i><span>1</span><p>Total Student Enrolled</p></div>
-          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>2</span><p>Total Student Violation</p></div>
-          <div class="card red"><i class="fas fa-check-circle"></i><span>3</span><p>Total Violation</p></div>
+          <div class="card gold"><i class="fas fa-user"></i><span>0</span><p>Total Student Enrolled</p></div>
+          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>0</span><p>Total Student Violation</p></div>
+          <div class="card red"><i class="fas fa-check-circle"></i><span>0</span><p>Total Violation</p></div>
           <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
         </div>
 
@@ -73,19 +75,7 @@
               <th>COURSE-SECTION</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td>
-                <select style="width: 100%; text-align: center;">
-                  <option>Select Section</option>
-                  <option>BSIT-1A</option>
-                  <option>BSCS-2B</option>
-                </select>
-              </td>
-            </tr>
-          </tbody>
+      
         </table>
       </div>
 
@@ -105,10 +95,6 @@
               <th>DATE</th>
             </tr>
           </thead>
-          <tbody>
-            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
-            <tr><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td><td><input type="text" placeholder="Type here"></td></tr>
-          </tbody>
         </table>
       </div>
 
@@ -130,22 +116,6 @@
               <th><i class="fas fa-check-square"></i></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="date"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="date"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-          </tbody>
         </table>
       </div>
 
@@ -161,9 +131,9 @@
           <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
         </div>
         <div class="section-cards-grid">
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>40 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>30 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>30 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>0 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>0 Currently Enrolled</p></div>
+          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>0 Currently Enrolled</p></div>
         </div>
       </div>
 
@@ -186,25 +156,27 @@
               <th><i class="fas fa-check-square"></i></th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="text" placeholder="Type here"></td>
-              <td><input type="checkbox"></td>
-            </tr>
-          </tbody>
         </table>
       </div>
     </main>
   </div>
+<div id="logoutModal" class="modal-overlay">
+  <div class="modal">
+    <img src="nulogo.png" alt="Warning Icon" class="modal-icon">
+    <h3>Confirm Logout</h3>
+    <p>Are you sure you want to log out?</p>
+    <div class="modal-buttons">
+      <button class="btn-confirm" id="confirmLogout">Yes, Logout</button>
+      <button class="btn-cancel" id="cancelLogout">Cancel</button>
+    </div>
+  </div>
+</div>
 
+  
+<div class="splash-screen" id="logoutSplash">
+  <img src="nulogo.png" alt="NU Logo" />
+  <h2>Logging out...</h2>
+</div>
   <!-- Chart.js and Custom JS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
@@ -272,9 +244,38 @@
       showSection('sectionDetails', event, newSectionId);
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      showSection('dashboard', null);
-    });
+   document.addEventListener('DOMContentLoaded', () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const section = urlParams.get('section') || 'dashboard';
+  showSection(section, null);
+});
+
+const logoutBtn = document.getElementById('logoutBtn');
+const logoutModal = document.getElementById('logoutModal');
+const confirmLogout = document.getElementById('confirmLogout');
+const cancelLogout = document.getElementById('cancelLogout');
+
+logoutBtn.addEventListener('click', function (e) {
+  e.preventDefault();
+  logoutModal.style.display = 'flex';
+});
+
+confirmLogout.addEventListener('click', function () {
+  // Hide modal and show splash screen
+  logoutModal.style.display = 'none';
+  document.getElementById('logoutSplash').style.display = 'flex';
+
+  // Delay redirection by 2 seconds
+  setTimeout(() => {
+    window.location.href = 'index.html'; // Replace with your login page if different
+  }, 2000); // 2000 ms = 2 seconds
+});
+
+cancelLogout.addEventListener('click', function () {
+  logoutModal.style.display = 'none';
+});
+
+
   </script>
 </body>
 </html>
