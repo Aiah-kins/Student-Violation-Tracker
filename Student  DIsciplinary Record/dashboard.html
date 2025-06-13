@@ -262,8 +262,8 @@ logoutBtn.addEventListener('click', function (e) {
 
 confirmLogout.addEventListener('click', function () {
   // Hide modal and show splash screen
-  logoutModal.style.display = 'none';
-  document.getElementById('logoutSplash').style.display = 'flex';
+ const splash = document.getElementById("logoutSplash");
+    splash.classList.add("show"); // Use class to show splash
 
   // Delay redirection by 2 seconds
   setTimeout(() => {

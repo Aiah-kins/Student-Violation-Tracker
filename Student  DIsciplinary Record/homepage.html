@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="header-right">
-      <button class="logout-button" onclick="logout()">Logout</button>
+      <button class="logout-button" id="logoutBtn">Logout</button>
     </div>
   </div>
 
@@ -52,32 +52,54 @@
       </a>
 
       <a href="dashboard.html?section=studentViolation" class="card">
-     <i class="fas fa-user"></i> <i class="fas fa-exclamation-triangle"></i>
-
+        <i class="fas fa-user"></i> <i class="fas fa-exclamation-triangle"></i>
         <span>STUDENT VIOLATION</span>
       </a>
     </div>
   </div>
-<!-- Logout Splash Screen -->
-<div class="splash-screen" id="logoutSplash">
-  <img src="nulogo.png" alt="NU Logo" />
-  <h2>Logging out...</h2>
-</div>
 
-  
+  <!-- Logout Modal -->
+  <div id="logoutModal" class="modal-overlay">
+    <div class="modal">
+      <img src="nulogo.png" alt="Warning Icon" class="modal-icon">
+      <h3>Confirm Logout</h3>
+      <p>Are you sure you want to log out?</p>
+      <div class="modal-buttons">
+        <button class="btn-confirm" id="confirmLogout">Yes, Logout</button>
+        <button class="btn-cancel" id="cancelLogout">Cancel</button>
+      </div>
+    </div>
+  </div>
 
-<script>
-  function logout() {
+  <!-- Logout Splash Screen -->
+  <div class="splash-screen" id="logoutSplash">
+    <img src="nulogo.png" alt="NU Logo" />
+    <h2>Logging out...</h2>
+  </div>
+
+  <script>
+    const logoutBtn = document.getElementById('logoutBtn');
+    const logoutModal = document.getElementById('logoutModal');
+    const confirmLogout = document.getElementById('confirmLogout');
+    const cancelLogout = document.getElementById('cancelLogout');
     const splash = document.getElementById("logoutSplash");
-    splash.classList.add("show"); // Use class to show splash
 
-    setTimeout(() => {
-      window.location.href = "index.html"; // Redirect after delay
-    }, 2000);
-  }
-</script>
+    logoutBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      logoutModal.style.display = 'flex';
+    });
 
+    confirmLogout.addEventListener('click', function () {
+      logoutModal.style.display = 'none';
+      splash.classList.add("show");
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    });
 
-  
+    cancelLogout.addEventListener('click', function () {
+      logoutModal.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
