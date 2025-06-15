@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +23,11 @@
       <button class="logout-button" id="logoutBtn">Logout</button>
     </div>
   </div>
-
+ 
   <div class="navbar">
     <div>NU DASMARIÑAS</div>
   </div>
-
+ 
   <!-- CONTENT BOXES -->
   <div class="grid-container">
     <div class="grid-row">
@@ -33,31 +35,27 @@
         <i class="fas fa-user-plus"></i>
         <span>MANAGE STUDENT</span>
       </a>
-
+ 
       <a href="dashboard.html" class="card">
         <i class="fas fa-chart-bar"></i>
         <span>ADMIN DASHBOARD</span>
       </a>
-
-      <a href="dashboard.html?section=manageSection" class="card">
-        <i class="fas fa-users"></i>
-        <span>MANAGE SECTION</span>
-      </a>
-    </div>
-
+ 
+    
+ 
     <div class="grid-row">
       <a href="dashboard.html?section=manageViolation" class="card">
         <i class="fas fa-exclamation-triangle"></i>
         <span>MANAGE VIOLATION</span>
       </a>
-
+ 
       <a href="dashboard.html?section=studentViolation" class="card">
         <i class="fas fa-user"></i> <i class="fas fa-exclamation-triangle"></i>
         <span>STUDENT VIOLATION</span>
       </a>
     </div>
   </div>
-
+ 
   <!-- Logout Modal -->
   <div id="logoutModal" class="modal-overlay">
     <div class="modal">
@@ -70,25 +68,25 @@
       </div>
     </div>
   </div>
-
+ 
   <!-- Logout Splash Screen -->
   <div class="splash-screen" id="logoutSplash">
     <img src="nulogo.png" alt="NU Logo" />
     <h2>Logging out...</h2>
   </div>
-
+ 
   <script>
     const logoutBtn = document.getElementById('logoutBtn');
     const logoutModal = document.getElementById('logoutModal');
     const confirmLogout = document.getElementById('confirmLogout');
     const cancelLogout = document.getElementById('cancelLogout');
     const splash = document.getElementById("logoutSplash");
-
+ 
     logoutBtn.addEventListener('click', function (e) {
       e.preventDefault();
       logoutModal.style.display = 'flex';
     });
-
+ 
     confirmLogout.addEventListener('click', function () {
       logoutModal.style.display = 'none';
       splash.classList.add("show");
@@ -96,7 +94,7 @@
         window.location.href = 'index.html';
       }, 2000);
     });
-
+ 
     cancelLogout.addEventListener('click', function () {
       logoutModal.style.display = 'none';
     });

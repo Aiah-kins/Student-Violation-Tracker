@@ -8,33 +8,32 @@
   <link rel="icon" type="x-icon" href="nulogo.png"/>
   <link rel="stylesheet" href="dashboard.css">
 </head>
-
+ 
 <body>
   <div class="container">
      <aside class="sidebar" id="sidebar">
       <div class="profile">
 <img src="nulogo.png" class="logo">
-
+ 
         <h2>SIVS</h2>
         <p>System Administrator</p>
       </div>
-
+ 
       <nav class="nav">
         <a href="homepage.html"><i class="fas fa-home"></i> Home</a>
         <a href="#" class="active" onclick="showSection('dashboard', event)"><i class="fa-solid fa-chart-simple"></i> Dashboard</a>
         <a href="#" onclick="showSection('manageStudent', event)"><i class="fas fa-user-graduate"></i> Manage Student</a>
         <a href="#" onclick="showSection('studentViolation', event)"><i class="fas fa-exclamation-circle"></i> Student Violation</a>
         <a href="#" onclick="showSection('manageViolation', event)"><i class="fas fa-tools"></i> Manage Violation</a>
-        <a href="#" onclick="showSection('manageSection', event)"><i class="fas fa-tools"></i> Manage Section</a>
         <a href="#" id="logoutBtn" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
       </nav>
        
     </aside>
-
+ 
     <main class="main-content">
       <div class="background-image"></div>
-
-      <!-- DASHBOARD Content -->
+ 
+      <!--DASHBOARD-->
       <div id="dashboard" class="content-section active">
         <div class="info-cards">
           <div class="card gold"><i class="fas fa-user"></i><span>0</span><p>Total Student Enrolled</p></div>
@@ -42,7 +41,7 @@
           <div class="card red"><i class="fas fa-check-circle"></i><span>0</span><p>Total Violation</p></div>
           <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
         </div>
-
+ 
         <div class="chart-grid">
           <div class="chart-card">
             <h3>Total Minor and Major Offense</h3>
@@ -58,128 +57,136 @@
           </div>
         </div>
       </div>
-
+ 
       <!-- MANAGE STUDENT Content -->
-      <div id="manageStudent" class="content-section">
-        <div class="manage-student-header">MANAGE STUDENT</div>
-        <div class="manage-student-buttons">
-          <button class="btn-green"><i class="fas fa-sync-alt"></i> Update Student Info</button>
-          <button class="btn-red"><i class="fas fa-trash"></i> Delete Student</button>
-          <button class="btn-blue"><i class="fas fa-user-plus"></i> Add Student</button>
-        </div>
-        <table class="student-table">
-          <thead>
-            <tr>
-              <th>STUDENT NAME (LAST, FIRST, M.I)</th>
-              <th>STUDENT ID</th>
-              <th>COURSE-SECTION</th>
-            </tr>
-          </thead>
-      
-        </table>
-      </div>
-
-      <!-- STUDENT VIOLATION Content -->
-      <div id="studentViolation" class="content-section">
-        <div class="violation-header">STUDENT VIOLATION RECORD</div>
-        <div class="violation-buttons">
-          <button class="btn-red"><i class="fas fa-trash"></i> DELETE STUDENT ID</button>
-          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
-        </div>
-        <table class="violation-table">
-          <thead>
-            <tr>
-              <th>STUDENT NAME (LAST, FIRST, M.I)<br>Stud ID no.</th>
-              <th>VIOLATION</th>
-              <th>VIOLATION REMARK</th>
-              <th>DATE</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-
-      <!-- MANAGE VIOLATION Content -->
-      <div id="manageViolation" class="content-section">
-        <div class="violation-header">MANAGE VIOLATION</div>
-        <div class="violation-buttons">
-          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD VIOLATION</button>
-          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
-          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
-        </div>
-        <table class="violation-table">
-          <thead>
-            <tr>
-              <th>STUDENT NAME (LAST, FIRST, M.I)<br>STUD ID NO.</th>
-              <th>VIOLATION</th>
-              <th>VIOLATION REMARK</th>
-              <th>DATE</th>
-              <th><i class="fas fa-check-square"></i></th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-
-      <!-- MANAGE SECTION Content -->
-      <div id="manageSection" class="content-section">
-        <div class="manage-section-header">MANAGE SECTION</div>
-        <div class="manage-section-buttons">
-          <!-- ✅ Updated here -->
-          <button class="btn-green" onclick="addNewSection(event)">
-            <i class="fas fa-plus-circle"></i> ADD SECTION
-          </button>
-          <button class="btn-red"><i class="fas fa-trash-alt"></i> DELETE SELECTED SECTION</button>
-          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH SECTION</button>
-        </div>
-        <div class="section-cards-grid">
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 235</h2><p>0 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 234</h2><p>0 Currently Enrolled</p></div>
-          <div class="section-card"><i class="fas fa-users"></i><h2>BSIT-INF 233</h2><p>0 Currently Enrolled</p></div>
-        </div>
-      </div>
-
-      <!-- SECTION DETAILS Content -->
-      <div id="sectionDetails" class="content-section">
-        <div class="section-details-header">
-          MANAGE SECTION: <span id="section-id-display"></span>
-          <button class="btn-red"><i class="fas fa-trash"></i> DELETE SELECTED RECORD</button>
-        </div>
-        <div class="section-details-buttons">
-          <button class="btn-green"><i class="fas fa-plus-circle"></i> ADD STUDENT</button>
-          <button class="btn-blue"><i class="fas fa-search"></i> SEARCH STUDENT</button>
-        </div>
-        <table class="section-details-table">
-          <thead>
-            <tr>
-              <th>STUDENT ID</th>
-              <th>STUDENT NAME (LAST NAME, FIRST NAME, INITIAL)</th>
-              <th>REMARKS (ENROLLED OR REGISTERED)</th>
-              <th><i class="fas fa-check-square"></i></th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </main>
+<div id="manageStudent" class="content-section">
+  <div class="manage-student-header">MANAGE STUDENT</div>
+  <!-- Action Buttons (used for selected rows) -->
+  <div class="manage-student-buttons">
+    <button class="btn-green" onclick="updateStudent()"><i class="fas fa-sync-alt"></i> Update Student Info</button>
+    <button class="btn-red" onclick="deleteSelectedStudent()"><i class="fas fa-trash"></i> Delete Student</button>
+    <button class="btn-blue" onclick="toggleForm()"><i class="fas fa-user-plus"></i> Add Student</button>
   </div>
-<div id="logoutModal" class="modal-overlay">
-  <div class="modal">
-    <img src="nulogo.png" alt="Warning Icon" class="modal-icon">
-    <h3>Confirm Logout</h3>
-    <p>Are you sure you want to log out?</p>
-    <div class="modal-buttons">
-      <button class="btn-confirm" id="confirmLogout">Yes, Logout</button>
-      <button class="btn-cancel" id="cancelLogout">Cancel</button>
+  <!-- Student Table -->
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>STUDENT NAME (LAST, FIRST, M.I)</th>
+        <th>STUDENT ID</th>
+        <th>COURSE-SECTION</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody">
+      <!-- Rows added dynamically -->
+    </tbody>
+  </table>
+ 
+  <!-- Add Student Form -->
+  <div id="studentForm" style="display: none; margin-top: 20px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+      <input id="nameInput" type="text" placeholder="Student Name (Last, First, M.I)" style="flex: 1; padding: 10px;" />
+      <input id="idInput" type="text" placeholder="Student ID" style="flex: 1; padding: 10px;" />
+      <select id="sectionInput" style="flex: 1; padding: 10px;">
+        <option>Select Section</option>
+        <option>BSIT-INF235</option>
+        <option>BSIT-INF234</option>
+        <option>BSIT-INF233</option>
+      </select>
+      <button onclick="addStudent()" class="btn-green" style="padding: 10px 20px;"><i class="fas fa-plus-circle"></i> Save Student</button>
     </div>
   </div>
 </div>
-
-  
-<div class="splash-screen" id="logoutSplash">
-  <img src="nulogo.png" alt="NU Logo" />
-  <h2>Logging out...</h2>
+ 
+      <!-- STUDENT VIOLATION Content -->
+ <!-- STUDENT VIOLATION RECORD -->
+<div id="studentViolation" class="content-section">
+  <div class="violation-header">STUDENT VIOLATION RECORD</div>
+  <div class="violation-buttons">
+    <input id="searchInputViolation" type="text" placeholder="Enter Student ID" />
+      <button class="btn-blue" onclick="searchStudentManage()"><i class="fas fa-search"></i> SEARCH STUDENT </button>
+      <button class="btn-red" onclick="deleteViolationManage()"><i class="fas fa-trash-alt"></i> DELETE STUDENT</button>
+  </div>
+ 
+  <h3>Saved Violation Records</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Name & ID</th>
+        <th>Section</th>
+        <th>Violation</th>
+        <th>Remarks</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="studentViolationBody"></tbody>
+  </table>
+</div>
+ 
+   
+      <!-- MANAGE VIOLATION Content -->
+<div id="manageViolation" class="content-section">
+  <div class="violation-header">MANAGE VIOLATION</div>
+ 
+  <!-- Student Info Display (hidden by default) -->
+  <div id="studentInfoDisplay" style="display: none; background: #e3f2fd; border: 2px solid #2196F3; border-radius: 8px; padding: 16px; margin: 16px 0;">
+    <h4 style="color: #1565C0; margin-bottom: 8px;">Student Found:</h4>
+    <p style="margin: 4px 0; font-weight: 500;"><strong>Name:</strong> <span id="foundStudentName"></span></p>
+    <p style="margin: 4px 0; font-weight: 500;"><strong>ID:</strong> <span id="foundStudentId"></span></p>
+    <p style="margin: 4px 0; font-weight: 500;"><strong>Section:</strong> <span id="foundStudentSection"></span></p>
+  </div>
+ 
+  <div class="violation-buttons">
+    <!-- SEARCH FIELD AND BUTTON -->
+    <input type="text" id="manageSearchInput" placeholder="Enter Student ID" style="padding: 8px; margin-right: 5px;" />
+    <button class="btn-blue" onclick="searchStudentManage()"><i class="fas fa-search"></i> SEARCH STUDENT ID</button>
+    <button class="btn-green" onclick="addViolationRowManage()"><i class="fas fa-plus-circle"></i> ADD VIOLATION</button>
+    <button class="btn-yellow" onclick="updateViolationManage()"><i class="fas fa-edit"></i> UPDATE VIOLATION</button>
+    <button class="btn-red" onclick="deleteViolationManage()"><i class="fas fa-trash-alt"></i> DELETE VIOLATION</button>
+  </div>
+ 
+  <table class="violation-table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Name / ID</th>
+        <th>Section</th>
+        <th>Violation</th>
+        <th>Remarks</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody id="violationTableBodyManage">
+      <!-- Rows added here dynamically -->
+    </tbody>
+  </table>
+ 
+  <h3>Saved Violation Records</h3>
+  <table class="violation-table">
+    <thead>
+      <tr>
+        <th>Select</th>
+        <th>Name / ID</th>
+        <th>Section</th>
+        <th>Violation</th>
+        <th>Remarks</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="savedViolationsBodyManage">
+      <!-- Saved records shown here -->
+    </tbody>
+  </table>
+</div>
+ 
 </div>
   <!-- Chart.js and Custom JS -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+//DASHBOARD
     const offenseCtx = document.getElementById('offenseChart');
     new Chart(offenseCtx, {
       type: 'pie',
@@ -188,7 +195,7 @@
         datasets: [{ data: [62, 26, 12], backgroundColor: ['#76e1fa', '#51a5d4', '#20517d'] }]
       }
     });
-
+ 
     const enrolledCtx = document.getElementById('enrolledChart');
     new Chart(enrolledCtx, {
       type: 'bar',
@@ -201,7 +208,7 @@
       },
       options: { responsive: true }
     });
-
+ 
     const violationCtx = document.getElementById('violationChart');
     new Chart(violationCtx, {
       type: 'bar',
@@ -214,68 +221,499 @@
       },
       options: { responsive: true }
     });
-
+ 
     function showSection(id, event, sectionId = null) {
       document.querySelectorAll('.content-section').forEach(section => {
         section.classList.remove('active');
       });
-
+ 
       const targetSection = document.getElementById(id);
       if (targetSection) {
         targetSection.classList.add('active');
       }
-
+ 
       document.querySelectorAll('.nav a').forEach(link => link.classList.remove('active'));
       if (event && event.currentTarget) {
         event.currentTarget.classList.add('active');
       }
-
+ 
       if (id === 'sectionDetails' && sectionId) {
         const sectionIdDisplay = document.getElementById('section-id-display');
         if (sectionIdDisplay) {
           sectionIdDisplay.textContent = sectionId;
+ 
+      document.addEventListener('DOMContentLoaded', () => {
+  const myBtn = document.getElementById('someButton');
+  if (myBtn) {
+    myBtn.addEventListener('click', myFunction);
+  }
+ 
+  renderSections(); // Already correctly inside here
+});          
         }
       }
     }
-
-    function addNewSection(event) {
+// MANAGE STUDENT
+document.addEventListener('DOMContentLoaded', () => {
+  loadStudents(); // Load students from localStorage on page load
+  displaySavedViolations(); // Load saved violations
+  displaySavedViolationsManage(); // Load saved violations in manage section
+});
+ 
+function toggleForm() {
+  const form = document.getElementById("studentForm");
+  form.style.display = form.style.display === "none" ? "block" : "none";
+}
+ 
+function addStudent() {
+  const name = document.getElementById("nameInput").value.trim();
+  const id = document.getElementById("idInput").value.trim();
+  const section = document.getElementById("sectionInput").value;
+ 
+  if (!id || id.toLowerCase() === "undefined") {
+    alert("Student ID is required and must not be empty or 'undefined'.");
+    return;
+  }
+ 
+  if (name === "" || section === "Select Section") {
+    alert("Please complete all fields.");
+    return;
+  }
+ 
+  const students = getStudents();
+ 
+  const duplicate = students.some(student => student.id === id);
+  if (duplicate) {
+    alert("Student ID already exists. Please use a unique ID.");
+    return;
+  }
+ 
+  const student = { name, id, section };
+  students.push(student);
+  saveStudents(students);
+  renderStudents();
+ 
+  // Clear form
+  document.getElementById("nameInput").value = "";
+  document.getElementById("idInput").value = "";
+  document.getElementById("sectionInput").value = "Select Section";
+ 
+  toggleForm();
+}
+ 
+function deleteSelectedStudent() {
+  const selected = document.querySelector('input[name="selectStudent"]:checked');
+  if (!selected) {
+    alert("Please select a student to delete.");
+    return;
+  }
+ 
+  const rowIndex = selected.closest('tr').rowIndex - 1; // subtract header row
+  const students = getStudents();
+  students.splice(rowIndex, 1);
+  saveStudents(students);
+  renderStudents();
+}
+ 
+function updateStudent() {
+  const selected = document.querySelector('input[name="selectStudent"]:checked');
+  if (!selected) {
+    alert("Please select a student to update.");
+    return;
+  }
+ 
+  const row = selected.closest('tr');
+  const rowIndex = row.rowIndex - 1;
+ 
+  const students = getStudents();
+  const student = students[rowIndex];
+ 
+  // Prefill form
+  document.getElementById("nameInput").value = student.name;
+  document.getElementById("idInput").value = student.id;
+  document.getElementById("sectionInput").value = student.section;
+ 
+  // Remove the student temporarily to be replaced after re-save
+  students.splice(rowIndex, 1);
+  saveStudents(students);
+  renderStudents();
+ 
+  document.getElementById("studentForm").style.display = "block";
+}
+ 
+function getStudents() {
+  return JSON.parse(localStorage.getItem("students") || "[]");
+}
+ 
+function saveStudents(students) {
+  localStorage.setItem("students", JSON.stringify(students));
+}
+ 
+function renderStudents() {
+  const students = getStudents();
+  const tableBody = document.getElementById("studentTableBody");
+  tableBody.innerHTML = "";
+ 
+  students.forEach(student => {
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td><input type="radio" name="selectStudent" /></td>
+      <td>${student.name}</td>
+      <td>${student.id}</td>
+      <td>${student.section}</td>
+    `;
+    tableBody.appendChild(newRow);
+  });
+}
+ 
+function loadStudents() {
+  renderStudents();
+}
+ 
+  //Logout button
+       function addNewSection(event) {
       event.preventDefault();
       const newSectionId = "New Section " + Math.floor(Math.random() * 1000);
       showSection('sectionDetails', event, newSectionId);
     }
-
+ 
    document.addEventListener('DOMContentLoaded', () => {
   const urlParams = new URLSearchParams(window.location.search);
   const section = urlParams.get('section') || 'dashboard';
   showSection(section, null);
 });
-
+ 
 const logoutBtn = document.getElementById('logoutBtn');
 const logoutModal = document.getElementById('logoutModal');
 const confirmLogout = document.getElementById('confirmLogout');
 const cancelLogout = document.getElementById('cancelLogout');
-
-logoutBtn.addEventListener('click', function (e) {
-  e.preventDefault();
-  logoutModal.style.display = 'flex';
+ 
+if (logoutBtn) {
+  logoutBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (logoutModal) {
+      logoutModal.style.display = 'flex';
+    }
+  });
+}
+ 
+if (confirmLogout) {
+  confirmLogout.addEventListener('click', function () {
+    // Hide modal and show splash screen
+    const splash = document.getElementById("logoutSplash");
+    if (splash) {
+      splash.classList.add("show"); // Use class to show splash
+    }
+   
+    // Delay redirection by 2 seconds
+    setTimeout(() => {
+      window.location.href = 'index.html'; // Replace with your login page if different
+    }, 2000); // 2000 ms = 2 seconds
+  });
+}
+ 
+if (cancelLogout) {
+  cancelLogout.addEventListener('click', function () {
+    if (logoutModal) {
+      logoutModal.style.display = 'none';
+    }
+  });
+}
+ 
+ 
+// Student Violations
+// Display saved violations
+function displaySavedViolations() {
+  const violationTable = document.getElementById("studentViolationBody");
+  const violationRecords = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  violationTable.innerHTML = "";
+ 
+  violationRecords.forEach(record => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><input type="checkbox" class="delete-checkbox" data-id="${record.id}" /></td>
+      <td><strong>${record.name}</strong><br><small>${record.studentId}</small></td>
+      <td>${record.section}</td>
+      <td>${record.violation}</td>
+      <td>${record.remarks}</td>
+      <td>${record.date}</td>
+    `;
+    violationTable.appendChild(row);
+  });
+}
+ 
+// Delete selected saved violations
+function deleteViolationManage() {
+  const checkboxes = document.querySelectorAll(".delete-checkbox:checked");
+  if (checkboxes.length === 0) {
+    alert("Please select a student violation to delete.");
+    return;
+  }
+ 
+  const violationRecords = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  const idsToDelete = Array.from(checkboxes).map(cb => cb.getAttribute("data-id"));
+ 
+  const updatedRecords = violationRecords.filter(record => !idsToDelete.includes(record.id.toString()));
+  localStorage.setItem("violationRecords", JSON.stringify(updatedRecords));
+ 
+  alert("Selected student violations deleted.");
+  displaySavedViolations();
+}
+ 
+// Manage Violation Functions
+let currentFoundStudent = null;
+ 
+function cleanInvalidViolations() {
+  let violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  violations = violations.filter(v => v && v.id && v.id !== "undefined" && v.id !== null);
+  localStorage.setItem("violationRecords", JSON.stringify(violations));
+}
+ 
+function searchStudentManage() {
+  const searchId = document.getElementById("manageSearchInput").value.trim();
+  if (!searchId) {
+    alert("Please enter a Student ID");
+    return;
+  }
+ 
+  const students = getStudents();
+  const found = students.find(student => student.id === searchId);
+ 
+  const studentInfoDisplay = document.getElementById("studentInfoDisplay");
+ 
+  if (found) {
+    currentFoundStudent = found;
+ 
+    // Show student info
+    document.getElementById("foundStudentName").textContent = found.name;
+    document.getElementById("foundStudentId").textContent = found.id;
+    document.getElementById("foundStudentSection").textContent = found.section;
+    studentInfoDisplay.style.display = "block";
+ 
+    alert("Student found: " + found.name);
+  } else {
+    studentInfoDisplay.style.display = "none";
+    currentFoundStudent = null;
+    alert("Student ID not found.");
+  }
+}
+ 
+function addViolationRowManage() {
+  if (!currentFoundStudent) {
+    alert("Please search for a student first.");
+    return;
+  }
+ 
+  const today = new Date().toISOString().split("T")[0];
+  const tableBody = document.getElementById("violationTableBodyManage");
+ 
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><input type="checkbox" class="select-row-manage" /></td>
+    <td><strong>${currentFoundStudent.name}</strong><br><small>${currentFoundStudent.id}</small></td>
+    <td>${currentFoundStudent.section}</td>
+    <td><input type="text" placeholder="Enter violation..." style="padding: 5px; width: 100%;" /></td>
+    <td>
+      <select style="padding: 5px; width: 100%;">
+        <option>Choose Remarks</option>
+        <option>Major</option>
+        <option>Minor</option>
+      </select>
+    </td>
+    <td><input type="date" value="${today}" style="padding: 5px; width: 100%;" /></td>
+  `;
+  tableBody.appendChild(row);
+}
+ 
+function updateViolationManage() {
+  const tableBody = document.getElementById("violationTableBodyManage");
+  const rows = tableBody.querySelectorAll("tr");
+  const violationRecords = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+ 
+  rows.forEach(row => {
+    const cells = row.querySelectorAll("td");
+    if (cells.length >= 6) {
+      const nameId = cells[1].innerText.split("\n");
+      const name = nameId[0].trim();
+      const studentId = nameId[1]?.trim();
+      const section = cells[2].innerText.trim();
+      const violation = cells[3].querySelector("input")?.value.trim() || "";
+      const remarks = cells[4].querySelector("select")?.value || "";
+      const date = cells[5].querySelector("input[type='date']")?.value || "";
+ 
+      if (violation && remarks && date && remarks !== "Choose Remarks" && studentId && studentId !== "undefined") {
+        violationRecords.push({
+          id: Date.now() + Math.random(),
+          name,
+          studentId,
+          section,
+          violation,
+          remarks,
+          date
+        });
+      }
+    }
+  });
+ 
+  localStorage.setItem("violationRecords", JSON.stringify(violationRecords));
+  alert("Violations updated and saved!");
+  tableBody.innerHTML = "";
+  displaySavedViolations();
+  displaySavedViolationsManage();
+}
+ 
+function deleteViolationManage() {
+  const checkboxes = document.querySelectorAll(".select-row-manage:checked");
+  if (checkboxes.length === 0) {
+    alert("Please select at least one row to delete.");
+    return;
+  }
+ 
+  checkboxes.forEach(checkbox => {
+    checkbox.closest("tr").remove();
+  });
+ 
+  alert("Selected violations removed.");
+}
+ 
+function displaySavedViolations() {
+  const violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  const tbody = document.getElementById("studentViolationBody");
+  tbody.innerHTML = "";
+ 
+  violations.forEach((violation, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><input type="checkbox" data-index="${index}" /></td>
+      <td><strong>${violation.name}</strong><br><small>${violation.studentId}</small></td>
+      <td>${violation.section}</td>
+      <td>${violation.violation}</td>
+      <td><span style="padding: 4px 8px; border-radius: 12px; font-size: 12px; ${violation.remarks === 'Major' ? 'background-color: #fee; color: #c53030;' : 'background-color: #fef5e7; color: #dd6b20;'}">${violation.remarks}</span></td>
+      <td>${violation.date}</td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+ 
+function displaySavedViolationsManage() {
+  const violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  const tbody = document.getElementById("savedViolationsBodyManage");
+  tbody.innerHTML = "";
+ 
+  violations.forEach((violation, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td><input type="checkbox" data-violation-id="${violation.id}" /></td>
+      <td><strong>${violation.name}</strong><br><small>${violation.studentId}</small></td>
+      <td>${violation.section}</td>
+      <td contenteditable="true" style="padding: 5px;">${violation.violation}</td>
+      <td>
+        <select style="padding: 5px; width: 100%;" onchange="updateViolationField(${violation.id}, 'remarks', this.value)">
+          <option ${violation.remarks === 'Major' ? 'selected' : ''}>Major</option>
+          <option ${violation.remarks === 'Minor' ? 'selected' : ''}>Minor</option>
+        </select>
+      </td>
+      <td><input type="date" value="${violation.date}" style="padding: 5px; width: 100%;" onchange="updateViolationField(${violation.id}, 'date', this.value)" /></td>
+      <td>
+        <button onclick="saveViolationEdit(${violation.id})" style="padding: 5px 10px; margin-right: 5px; background: #28a745; color: white; border: none; border-radius: 4px;">Save</button>
+        <button onclick="deleteViolationRecord(${violation.id})" style="padding: 5px 10px; background: #dc3545; color: white; border: none; border-radius: 4px;">Delete</button>
+      </td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+ 
+function updateViolationField(violationId, field, value) {
+  const violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+  const violationIndex = violations.findIndex(v => v.id === violationId);
+ 
+  if (violationIndex !== -1) {
+    violations[violationIndex][field] = value;
+    localStorage.setItem("violationRecords", JSON.stringify(violations));
+  }
+}
+ 
+function saveViolationRecord(student) {
+  const violationInput = document.getElementById("violationInput").value.trim();
+  const remarksInput = document.getElementById("remarksSelect").value;
+  const dateInput = document.getElementById("dateInput").value;
+ 
+  if (!student || !student.id || student.id === "undefined" || !violationInput) {
+    alert("Invalid student data or violation. Please check your inputs.");
+    return;
+  }
+ 
+  const violationData = {
+    id: student.id,
+    name: student.name,
+    section: student.section,
+    violation: violationInput,
+    remarks: remarksInput,
+    date: dateInput,
+  };
+ 
+  let violations = JSON.parse(localStorage.getItem("violations") || "[]");
+  violations.push(violationData);
+  localStorage.setItem("violations", JSON.stringify(violations));
+ 
+  alert("Violation saved successfully!");
+  loadViolationRecords();
+}
+ 
+function deleteViolationRecord(violationId) {
+  if (confirm("Are you sure you want to delete this violation record?")) {
+    let violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+ 
+    // Convert to string to avoid mismatch issues
+    violations = violations.filter(v => String(v.id) !== String(violationId));
+ 
+    localStorage.setItem("violationRecords", JSON.stringify(violations));
+    alert("Violation record deleted successfully!");
+    displaySavedViolations();
+    displaySavedViolationsManage();
+  }
+}
+function removeInvalidViolations() {
+  let violations = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+ 
+  // Filter out any violations with undefined or blank studentId
+  violations = violations.filter(v =>
+    v.studentId &&
+    v.studentId !== "undefined" &&
+    v.studentId.trim() !== ""
+  );
+ 
+  localStorage.setItem("violationRecords", JSON.stringify(violations));
+}
+ 
+ 
+ 
+function deleteSelectedViolation() {
+  const checkboxes = document.querySelectorAll("#studentViolationBody input[type='checkbox']");
+  let records = JSON.parse(localStorage.getItem("violationRecords") || "[]");
+ 
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      const index = parseInt(cb.getAttribute("data-index"));
+      records[index] = null;
+    }
+  });
+ 
+  records = records.filter(item => item !== null);
+  localStorage.setItem("violationRecords", JSON.stringify(records));
+  displaySavedViolations();
+  displaySavedViolationsManage();
+  alert("Selected record(s) deleted.");
+}
+ 
+window.addEventListener("DOMContentLoaded", () => {
+  removeInvalidViolations(); // ✅ CLEAN BAD DATA
+  displaySavedViolations();
+  displaySavedViolationsManage();
 });
-
-confirmLogout.addEventListener('click', function () {
-  // Hide modal and show splash screen
- const splash = document.getElementById("logoutSplash");
-    splash.classList.add("show"); // Use class to show splash
-
-  // Delay redirection by 2 seconds
-  setTimeout(() => {
-    window.location.href = 'index.html'; // Replace with your login page if different
-  }, 2000); // 2000 ms = 2 seconds
-});
-
-cancelLogout.addEventListener('click', function () {
-  logoutModal.style.display = 'none';
-});
-
-
-  </script>
+ 
+ 
+ 
+</script>
 </body>
 </html>
