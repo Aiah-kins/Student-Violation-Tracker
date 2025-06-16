@@ -35,28 +35,27 @@
  
       <!--DASHBOARD-->
       <div id="dashboard" class="content-section active">
-        <div class="info-cards">
-          <div class="card gold"><i class="fas fa-user"></i><span>0</span><p>Total Student Enrolled</p></div>
-          <div class="card red"><i class="fas fa-exclamation-triangle"></i><span>0</span><p>Total Student Violation</p></div>
-          <div class="card red"><i class="fas fa-check-circle"></i><span>0</span><p>Total Violation</p></div>
-          <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
-        </div>
- 
-        <div class="chart-grid">
-          <div class="chart-card">
-            <h3>Total Minor and Major Offense</h3>
-            <canvas id="offenseChart"></canvas>
-          </div>
-          <div class="chart-card">
-            <h3>Enrolled Students per Department</h3>
-            <canvas id="enrolledChart"></canvas>
-          </div>
-          <div class="chart-card">
-            <h3>Total of Violations per Category</h3>
-            <canvas id="violationChart"></canvas>
-          </div>
-        </div>
-      </div>
+  <div class="info-cards">
+    <div class="card gold"><i class="fas fa-user"></i><span id="studentCount">0</span><p>Total Student Enrolled</p></div>
+    <div class="card red"><i class="fas fa-exclamation-triangle"></i><span id="violationCount">0</span><p>Total Student Violation</p></div>
+    <div class="card blue"><i class="fas fa-calendar-alt"></i><span>2025-2026</span><p>School Year</p></div>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <h3>Total Minor and Major Offense</h3>
+      <canvas id="offenseChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Enrolled Students per Department</h3>
+      <canvas id="enrolledChart"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>Total of Violations per Category</h3>
+      <canvas id="violationChart"></canvas>
+    </div>
+  </div>
+</div>
  
       <!-- MANAGE STUDENT Content -->
 <div id="manageStudent" class="content-section">
@@ -74,7 +73,7 @@
         <th>Select</th>
         <th>STUDENT NAME (LAST, FIRST, M.I)</th>
         <th>STUDENT ID</th>
-        <th>COURSE-SECTION</th>
+        <th>COURSE</th>
       </tr>
     </thead>
     <tbody id="studentTableBody">
@@ -87,11 +86,8 @@
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
       <input id="nameInput" type="text" placeholder="Student Name (Last, First, M.I)" style="flex: 1; padding: 10px;" />
       <input id="idInput" type="text" placeholder="Student ID" style="flex: 1; padding: 10px;" />
-      <select id="sectionInput" style="flex: 1; padding: 10px;">
-        <option>Select Section</option>
-        <option>BSIT-INF235</option>
-        <option>BSIT-INF234</option>
-        <option>BSIT-INF233</option>
+      <input id="sectionInput" type="text" placeholder="Course/Section" style="flex: 1; padding: 10px;" />
+
       </select>
       <button onclick="addStudent()" class="btn-green" style="padding: 10px 20px;"><i class="fas fa-plus-circle"></i> Save Student</button>
     </div>
@@ -102,12 +98,15 @@
  <!-- STUDENT VIOLATION RECORD -->
 <div id="studentViolation" class="content-section">
   <div class="violation-header">STUDENT VIOLATION RECORD</div>
+
   <div class="violation-buttons">
     <input id="searchInputViolation" type="text" placeholder="Enter Student ID" />
-      <button class="btn-blue" onclick="searchStudentManage()"><i class="fas fa-search"></i> SEARCH STUDENT </button>
-      <button class="btn-red" onclick="deleteViolationManage()"><i class="fas fa-trash-alt"></i> DELETE STUDENT</button>
+    <button class="btn-blue" onclick="searchStudentManage()">
+      <i class="fas fa-search"></i> SEARCH STUDENT
+    </button>
+  
   </div>
- 
+
   <h3>Saved Violation Records</h3>
   <table>
     <thead>
@@ -118,12 +117,15 @@
         <th>Violation</th>
         <th>Remarks</th>
         <th>Date</th>
+        <th>Actions</th> <!-- Added column -->
       </tr>
     </thead>
-    <tbody id="studentViolationBody"></tbody>
+    <tbody id="studentViolationBody">
+      <!-- Rows will be added by JavaScript -->
+    </tbody>
   </table>
 </div>
- 
+
    
       <!-- MANAGE VIOLATION Content -->
 <div id="manageViolation" class="content-section">
@@ -180,8 +182,26 @@
     </tbody>
   </table>
 </div>
- 
+
+<!-- Logout Confirmation-->
+
+<div id="logoutModal" class="modal-overlay">
+  <div class="modal">
+    <img src="nulogo.png" alt="Warning Icon" class="modal-icon">
+    <p>Are you sure you want to log out?</p>
+    <div class="modal-buttons">
+      <button class="btn-confirm" id="confirmLogout">Yes, Logout</button>
+      <button class="btn-cancel" id="cancelLogout">Cancel</button>
+    </div>
+  </div>
 </div>
+
+<div class="splash-screen" id="logoutSplash">
+    <img src="nulogo.png" alt="NU Logo" />
+    <h2>Logging out...</h2>
+  </div>
+ 
+
   <!-- Chart.js and Custom JS -->
  
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -268,7 +288,7 @@ function toggleForm() {
 function addStudent() {
   const name = document.getElementById("nameInput").value.trim();
   const id = document.getElementById("idInput").value.trim();
-  const section = document.getElementById("sectionInput").value;
+  const section = document.getElementById("sectionInput").value.trim();
  
   if (!id || id.toLowerCase() === "undefined") {
     alert("Student ID is required and must not be empty or 'undefined'.");
@@ -292,11 +312,12 @@ function addStudent() {
   students.push(student);
   saveStudents(students);
   renderStudents();
+  updateStudentCount();
  
   // Clear form
   document.getElementById("nameInput").value = "";
   document.getElementById("idInput").value = "";
-  document.getElementById("sectionInput").value = "Select Section";
+  document.getElementById("sectionInput").value = "";
  
   toggleForm();
 }
@@ -313,6 +334,7 @@ function deleteSelectedStudent() {
   students.splice(rowIndex, 1);
   saveStudents(students);
   renderStudents();
+  updateStudentCount();
 }
  
 function updateStudent() {
@@ -431,7 +453,7 @@ function displaySavedViolations() {
   violationRecords.forEach(record => {
     const row = document.createElement("tr");
     row.innerHTML = `
-      <td><input type="checkbox" class="delete-checkbox" data-id="${record.id}" /></td>
+      <td><input type="checkbox" class="select-row-manage" data-id="${record.id}" /></td>
       <td><strong>${record.name}</strong><br><small>${record.studentId}</small></td>
       <td>${record.section}</td>
       <td>${record.violation}</td>
@@ -441,24 +463,45 @@ function displaySavedViolations() {
     violationTable.appendChild(row);
   });
 }
+
+function addViolationRow(name, id, section, violation, remarks, date) {
+  const tbody = document.getElementById("studentViolationBody");
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    <td><input type="checkbox" /></td>
+    <td>${name} (${id})</td>
+    <td>${section}</td>
+    <td>${violation}</td>
+    <td>${remarks}</td>
+    <td>${date}</td>
+    <td><button class="btn-red" onclick="deleteRow(this)"><i class="fas fa-trash"></i></button></td>
+  `;
+
+  tbody.appendChild(row);
+}
+
+function deleteRow(button) {
+  const row = button.closest("tr");
+  row.remove();
+}
+
  
 // Delete selected saved violations
 function deleteViolationManage() {
-  const checkboxes = document.querySelectorAll(".delete-checkbox:checked");
-  if (checkboxes.length === 0) {
-    alert("Please select a student violation to delete.");
-    return;
-  }
- 
-  const violationRecords = JSON.parse(localStorage.getItem("violationRecords") || "[]");
-  const idsToDelete = Array.from(checkboxes).map(cb => cb.getAttribute("data-id"));
- 
-  const updatedRecords = violationRecords.filter(record => !idsToDelete.includes(record.id.toString()));
-  localStorage.setItem("violationRecords", JSON.stringify(updatedRecords));
- 
-  alert("Selected student violations deleted.");
-  displaySavedViolations();
+  const tbody = document.getElementById("studentViolationBody");
+  const checkboxes = tbody.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      const row = checkbox.closest('tr');
+      if (row) {
+        row.remove();
+      }
+    }
+  });
 }
+
  
 // Manage Violation Functions
 let currentFoundStudent = null;
@@ -560,6 +603,7 @@ function updateViolationManage() {
   tableBody.innerHTML = "";
   displaySavedViolations();
   displaySavedViolationsManage();
+  updateViolationCount()
 }
  
 function deleteViolationManage() {
@@ -572,6 +616,8 @@ function deleteViolationManage() {
   checkboxes.forEach(checkbox => {
     checkbox.closest("tr").remove();
   });
+
+
  
   alert("Selected violations removed.");
 }
@@ -621,6 +667,9 @@ function displaySavedViolationsManage() {
     `;
     tbody.appendChild(row);
   });
+
+  updateViolationCount();
+
 }
  
 function updateViolationField(violationId, field, value) {
@@ -658,6 +707,7 @@ function saveViolationRecord(student) {
  
   alert("Violation saved successfully!");
   loadViolationRecords();
+  updateViolationCount();
 }
  
 function deleteViolationRecord(violationId) {
@@ -671,6 +721,7 @@ function deleteViolationRecord(violationId) {
     alert("Violation record deleted successfully!");
     displaySavedViolations();
     displaySavedViolationsManage();
+    updateViolationCount();
   }
 }
 function removeInvalidViolations() {
@@ -711,9 +762,18 @@ window.addEventListener("DOMContentLoaded", () => {
   displaySavedViolations();
   displaySavedViolationsManage();
 });
+
+function updateStudentCount() {
+  const students = getStudents();
+  document.getElementById("studentCount").textContent = students.length;
+ };
+
+ function updateViolationCount() {
+  const count = document.querySelectorAll("#savedViolationsBodyManage tr").length;
+  document.getElementById("violationCount").textContent = count;
+}
  
- 
- 
+
 </script>
 </body>
 </html>
