@@ -1,18 +1,16 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NU-Dasma Student Violation Tracker</title>
+  <link rel="icon" type="x-icon" href="nulogo.png"/>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- 
   <header class="hero">
     <div class="overlay"></div>
- 
+
     <div class="logo-container">
       <img src="Image/cropped-NU-Shield_FC_RGB_POS_AW (1).png" alt="NU Logo" class="logo-img" />
       <div class="logo-text">
@@ -20,19 +18,20 @@
         <p class="tracker-subtitle">Student Affairs & Disciplinary Office</p>
       </div>
     </div>
- 
+
     <div class="hero-content">
       <h1 class="title">NU-Dasma Violation Tracker</h1>
       <p class="subtitle">Easily monitor and track student violations in a secure, accessible platform.</p>
-      <a href="#login" class="cta-btn">Login Now</a>
+      <a href="#login" class="cta-btn">ENTER</a>
     </div>
   </header>
- 
+
+  <!-- Login Section -->
   <section id="login" class="login-container">
     <form id="loginForm">
       <div class="form-group">
-        <label for="AdminLogin">Admin Login</label>
-        <input type="text" id="AdminLogin" name="Admin" placeholder="Enter your Admin ID" required />
+        <label for="AdminLogin">Username</label>
+        <input type="text" id="AdminLogin" name="" placeholder="Enter your username" required />
       </div>
       <div class="form-group">
         <label for="password">Password</label>
@@ -40,19 +39,94 @@
       </div>
       <button type="submit" class="login-btn">Login</button>
     </form>
+
+    <!-- Create Account Button -->
+    <button id="showCreateAccount" class="login-btn" style="margin-top:10px; background:#555;">Create Account</button>
+
+    <!-- Hidden Create Account Form -->
+    <form id="createAccountForm" style="display:none; margin-top:20px;">
+      <div class="form-group">
+        <label for="newAdmin">New Username</label>
+        <input type="text" id="newAdmin" name="Enter Username" placeholder="Enter your Username" required />
+      </div>
+      <div class="form-group">
+        <label for="newPassword">Password</label>
+        <input type="password" id="newPassword" name="newPassword" placeholder="Enter password" required />
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required />
+      </div>
+      <button type="submit" class="login-btn">Create Account</button>
+    </form>
+
     <div class="footer">
       &copy; 2025 National University – Dasmariñas<br>
       Student Affairs & Discipline Office
     </div>
   </section>
- 
+
   <!-- Splash Screen -->
   <div class="splash-screen" id="splashScreen">
     <img src="nulogo.png" alt="NU Logo" />
     <h2>Redirecting...</h2>
   </div>
- 
-  <!-- Scripts -->
-  <script src="SplashScreen.js"></script>
+
+ <!-- Scripts -->
+<script src="SplashScreen.js"></script>
+
+<script>
+  // Show create account form
+  document.getElementById("showCreateAccount").addEventListener("click", function() {
+    const form = document.getElementById("createAccountForm");
+    form.style.display = (form.style.display === "none") ? "block" : "none";
+  });
+
+  // Handle create account (basic example - localStorage)
+  document.getElementById("createAccountForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const newAdmin = document.getElementById("newAdmin").value;
+    const newPassword = document.getElementById("newPassword").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    // Save account (using localStorage for now)
+    localStorage.setItem("adminAccount", JSON.stringify({ id: newAdmin, password: newPassword }));
+
+    alert("Account created successfully! You can now login.");
+    this.reset();
+    this.style.display = "none";
+  });
+
+  // Handle login
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const adminID = document.getElementById("AdminLogin").value;
+    const password = document.getElementById("password").value;
+    const account = JSON.parse(localStorage.getItem("adminAccount"));
+
+    // If no account exists yet
+    if (!account) {
+      alert("No account found! Please create an account first.");
+      document.getElementById("createAccountForm").style.display = "block";
+      return;
+    }
+
+    // If account exists but wrong credentials
+    if (account.id === adminID && account.password === password) {
+      alert("Login successful!");
+      window.location.href = "dashboard.html"; // redirect to dashboard
+    } else {
+      alert("Invalid Username or Password! Please try again.");
+    }
+  });
+</script>
 </body>
 </html>
+
